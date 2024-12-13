@@ -1,0 +1,158 @@
+# Market Predictor Configuration Parameters
+
+data:
+  # Market Data Settings
+  ticker: "^GSPC"  # S&P 500 index
+  start_date: "2010-01-01"
+  end_date: null  # null means up to current date
+  training_start: "2010-01-01"
+  validation_start: "2018-01-01"
+  test_start: "2020-01-01"
+  data_frequency: "daily"
+  adjust_prices: true
+
+  # Data Source Flags
+  use_market_data: true
+  use_macro_data: true
+  use_sentiment_data: true
+  use_alternative_data: true
+
+  # API Configuration (fill in your keys)
+  fred_api_key: null
+  news_api_key: null
+  twitter_api_key: null
+
+  # General Settings
+  random_seed: 42
+  cache_data: true
+  cache_dir: "./data/cache"
+
+technical:
+  # Return Features
+  return_types:
+    - "Returns"
+    - "Log_Returns"
+
+  # Moving Average Settings
+  ma_windows: [5, 20, 50]
+  price_distance_windows: [5, 20, 50]
+
+  # Volume Features
+  volume_features:
+    - "OBV"
+    - "Volume_Ratio"
+    - "Force_Index_EMA13"
+    - "Vol_Trend"
+    - "PV_Trend"
+    - "PV_Divergence"
+    - "Volume_Force"
+
+  # Volatility and Momentum Settings
+  volatility_windows: [20]
+  rsi_windows: [7, 14, 28]
+  atr_period: 14
+  mfi_period: 14
+
+  # Pattern and Price Action Features
+  pattern_indicators:
+    - "Higher_High"
+    - "Lower_Low"
+    - "Inside_Day"
+  
+  price_features:
+    - "VWAP_Ratio"
+    - "High_Low_Range"
+    - "Daily_Gap"
+    - "New_Highs"
+    - "New_Lows"
+
+  trend_indicators:
+    - "Bullish_Momentum"
+    - "Bearish_Momentum"
+    - "Trend_Strength"
+
+macro:
+  # Economic Indicators
+  fred_series:
+    - "GDP"        # Gross Domestic Product
+    - "UNRATE"     # Unemployment Rate
+    - "CPIAUCSL"   # Consumer Price Index
+    - "INDPRO"     # Industrial Production
+    - "M2"         # M2 Money Supply
+    - "DFF"        # Federal Funds Rate
+    - "T10Y2Y"     # 10Y-2Y Treasury Spread
+    - "PSAVERT"    # Personal Savings Rate
+    - "PCE"        # Personal Consumption Expenditures
+
+  # Market Environment Indicators
+  market_indicators:
+    - "MOVE_Index"
+    - "VIX"
+    - "TED_Spread"
+    - "HY_Spread"
+
+  # Monetary Policy Indicators
+  monetary_indicators:
+    - "Fed_Funds_Rate"
+    - "Fed_Balance_Sheet"
+    - "M2_Growth"
+
+  # Update Settings
+  macro_update_frequency: "monthly"
+  interpolation_method: "forward_fill"
+  lag_adjustment: 1
+
+sentiment:
+  # News Sources
+  news_sources:
+    - "reuters"
+    - "bloomberg"
+    - "wsj"
+    - "ft"
+
+  # News Categories
+  news_categories:
+    - "economy"
+    - "markets"
+    - "policy"
+
+  # Social Media Sources
+  social_sources:
+    - "twitter"
+    - "reddit"
+    - "stocktwits"
+
+  # Market Sentiment Indicators
+  market_sentiment_indicators:
+    - "put_call_ratio"
+    - "fear_greed_index"
+    - "aaii_sentiment"
+
+  # Processing Settings
+  sentiment_windows: [1, 3, 7, 14]
+  sentiment_aggregation: "weighted_average"
+
+model:
+  # Basic Settings
+  target_horizon: 1
+  cv_folds: 5
+  batch_size: 32
+  max_epochs: 100
+
+  # Training Settings
+  learning_rate: 0.001
+  early_stopping_patience: 10
+  validation_size: 0.2
+
+  # Ensemble Settings
+  ensemble_models:
+    - "technical_model"
+    - "macro_model"
+    - "sentiment_model"
+  ensemble_method: "weighted_voting"
+  dynamic_weights: true
+
+  # Agent Settings
+  use_agents: false
+  agent_update_frequency: "daily"
+  agent_memory_length: 100
