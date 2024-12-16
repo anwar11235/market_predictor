@@ -32,7 +32,6 @@ pytest-cov>=4.0.0
 
 # Utilities
 python-dotenv>=0.19.2  # for environment variables
-logging>=0.5.1.2       # for logging
 
 # Optional but recommended
 jupyter>=1.0.0         # for notebooks
