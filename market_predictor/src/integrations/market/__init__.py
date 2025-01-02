@@ -5,6 +5,7 @@ This module handles market data integrations and real-time market data access:
 - Finnhub market data
 - Market indicators
 - Real-time price data
+- News data
 """
 
 from .finnhub_market import FinnhubMarket

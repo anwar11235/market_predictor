@@ -1,0 +1,12 @@
+[1mdiff --git a/market_predictor/src/integrations/market/__init__.py b/market_predictor/src/integrations/market/__init__.py[m
+[1mindex ab8fabb..f110c4d 100644[m
+[1m--- a/market_predictor/src/integrations/market/__init__.py[m
+[1m+++ b/market_predictor/src/integrations/market/__init__.py[m
+[36m@@ -5,6 +5,7 @@[m [mThis module handles market data integrations and real-time market data access:[m
+ - Finnhub market data[m
+ - Market indicators[m
+ - Real-time price data[m
+[32m+[m[32m- News data[m
+ """[m
+ [m
+ from .finnhub_market import FinnhubMarket[m
